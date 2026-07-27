@@ -16,7 +16,7 @@ jobs:
       - name: Build iam-cache
         run: go build -o iam-cache ./cmd/exordos-iam-cache
       - name: Upload iam-cache artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: iam-cache
           path: iam-cache
