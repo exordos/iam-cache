@@ -1,0 +1,14 @@
+[Unit]
+Description=Exordos IAM Cache Service
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+TimeoutStopSec=10
+Restart=always
+RestartSec=5s
+KillSignal=SIGINT
+ExecStart=/usr/local/bin/exordos-iam-cache -config /etc/exordos-iam-cache/config.json
+
+[Install]
+WantedBy=multi-user.target

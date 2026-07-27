@@ -1,0 +1,23 @@
+name: build
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-go@v6
+        with:
+          go-version-file: go.mod
+          cache-dependency-path: go.mod
+      - name: Build iam-cache
+        run: go build -o iam-cache ./cmd/exordos-iam-cache
+      - name: Upload iam-cache artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: iam-cache
+          path: iam-cache
+          if-no-files-found: error
