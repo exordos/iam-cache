@@ -20,6 +20,10 @@ if [[ ! -x $binary ]]; then
     exit 1
 fi
 
+if ! id -u iam-cache >/dev/null 2>&1; then
+    useradd --system --no-create-home --shell /usr/sbin/nologin iam-cache
+fi
+
 install -D -o root -g root -m 0755 "$binary" /usr/local/bin/exordos-iam-cache
 install -D -o root -g root -m 0644 \
     "$script_dir/exordos-iam-cache.service" \
